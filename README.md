@@ -2,7 +2,7 @@
 
 ## English
 
-I’m sure many people wanted to clear the list of previously opened files that is shown when launching office applications on a Mac.
+   I’m sure many people wanted to clear the list of previously opened files that is shown when launching office applications on a Mac.
 
 <img width="866" alt="image" src="https://github.com/idle4you/ClearRecordsRecentFilesMSOffice/assets/71770803/ff08f599-de42-44e9-b548-e50392e60711">
 
@@ -10,8 +10,8 @@ Of course, it is possible to remove links to files one by one, but what if there
 
 <details>
    <summary>Spoiler How I reached the solution</summary>
-   
-I searched for information on this issue for a long time, and found a recommendation to delete the files:
+
+   I searched for information on this issue for a long time, and found a recommendation to delete the files:
 
 ```
 com.microsoft.Excel.securebookmarks.plist
@@ -69,7 +69,7 @@ I know that you can wrap this whole algorithm in the form of a tasty script, but
 
 ## Русский
 
-Уверен многим хотелось очистить список ранее открытых файлов, который показывается при запуске офисных приложений на Mac.
+   Уверен многим хотелось очистить список ранее открытых файлов, который показывается при запуске офисных приложений на Mac.
 
 <img width="866" alt="image" src="https://github.com/idle4you/ClearRecordsRecentFilesMSOffice/assets/71770803/ff08f599-de42-44e9-b548-e50392e60711">
 
@@ -78,7 +78,7 @@ I know that you can wrap this whole algorithm in the form of a tasty script, but
 <details>
   <summary>Спойлер Как я дошел до решения</summary>
    
-Я долго искал информацию по этому вопросу, нашел рекомендацию удалять файлы:
+   Я долго искал информацию по этому вопросу, нашел рекомендацию удалять файлы:
 
 ```
 com.microsoft.Excel.securebookmarks.plist
