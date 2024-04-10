@@ -24,7 +24,7 @@ but it doesn't work on the latest versions of MS Office for Mac!
 
 So where does Microsoft store the list of recently opened files these days?
 
-While searching for information on the Internet, I came across a [recommendation](https://answers.microsoft.com/en-us/msoffice/forum/all/clear-and-disable-recent-files-in-office-365-on/063bcfcc-ee12-4a03-8124-8412c4204ca1) from a Microsoft employee which advised the user to delete the `MicrosoftRegistrationDB.reg` file, although it was said that all office application settings would be deleted along with the list of recent files :facepalm:...
+While searching for information on the Internet, I came across a [recommendation](https://answers.microsoft.com/en-us/msoffice/forum/all/clear-and-disable-recent-files-in-office-365-on/063bcfcc-ee12-4a03-8124-8412c4204ca1) from a Microsoft employee which advised the user to delete the `MicrosoftRegistrationDB.reg` file, although it was said that all office application settings would be deleted along with the list of recent files... :facepalm:
 
 Unfortunately, it was not possible to find it using the path indicated in the post, but I found the alias `MicrosoftRegistrationDB.reg`, which refers, as I think, to the file `MicrosoftRegistrationDB_xxxxxxxxxxxx.reg`, unique for each user (where x is a sequence of numbers), the second way to quickly find this file will probably be direct go to the folder along the path `~/Library/Group Containers/UBF8T346G9.Office/MicrosoftRegistrationDB`.
 
@@ -92,7 +92,7 @@ com.microsoft.PowerPoint.securebookmarks.plist
 Так где же Microsoft хранит нынче список последних открытых файлов?
 
 В поисках информации в интернете я наткнулся на одну [рекомендацию](https://answers.microsoft.com/en-us/msoffice/forum/all/clear-and-disable-recent-files-in-office-365-on/063bcfcc-ee12-4a03-8124-8412c4204ca1) сорудника Microsoft, 
-которая советовала пользователю удалить файл `MicrosoftRegistrationDB.reg`, правда было сказано что вместе со списком последних файлов удалятся все настройки офисных приложений :facepalm:...
+которая советовала пользователю удалить файл `MicrosoftRegistrationDB.reg`, правда было сказано что вместе со списком последних файлов удалятся все настройки офисных приложений... :facepalm:
 
 К сожалению по указанному в посте пути обнаружить его не удалось, зато я нашел псевдоним `MicrosoftRegistrationDB.reg` ссылающийся, как я думаю, на уникальный у каждого пользователя файл `MicrosoftRegistrationDB_xxxxxxxxxxxx.reg` (где x это последовательность цифр), вторым способом быстро найти этот файл наверное будет прямой переход в папку по пути `~/Library/Group Containers/UBF8T346G9.Office/MicrosoftRegistrationDB`.
 Так вот этот файл не что иное как база данных формата SQLite.
