@@ -8,6 +8,8 @@ I’m sure many people wanted to clear the list of previously opened files that 
 
 Of course, it is possible to remove links to files one by one, but what if there are so many of them that deletion will take a lot of time?
 
+<details>
+   <summary>Spoiler How I reached the solution</summary>
 I searched for information on this issue for a long time, and found a recommendation to delete the files com.microsoft.Excel.securebookmarks.plist
 com.microsoft.Word.securebookmarks.plist
 com.microsoft.PowerPoint.securebookmarks.plist
@@ -23,8 +25,9 @@ Then it was a matter of time to understand how it stores records about the lates
 As a result, I made a request to delete records relating to the last opened files:
 
 ```DELETE from "HKEY_CURRENT_USER_values" where node_id in (SELECT node_id FROM "HKEY_CURRENT_USER_values" WHERE name="path")```
+</details>
 
-Now about what actually needs to be done for cleaning:
+To clear the entire list at once, do the following:
 1. Open Finder, then in the “Go” menu select “Go to folder” and paste this path ~/Library/Group Containers/UBF8T346G9.Office/MicrosoftRegistrationDB
 2. We see one single file MicrosoftRegistrationDB_xxxxxxxxxxxx.reg
 3. Open a terminal and type: sqllite3 press space and drag the file from Finder into the terminal window and press Enter, SQLite will start and the database will open. You can make sure that the file with the database is open by typing .table, you should see this output:
@@ -58,12 +61,14 @@ I know that you can wrap this whole algorithm in the form of a tasty script, but
 
 ## Русский
 
-Уверен многим хотелось очистить список ранее открытых файлов, который показывается при запуске офисных приложений  на Mac.
+Уверен многим хотелось очистить список ранее открытых файлов, который показывается при запуске офисных приложений на Mac.
 
 <img width="866" alt="image" src="https://github.com/idle4you/ClearRecordsRecentFilesMSOffice/assets/71770803/ff08f599-de42-44e9-b548-e50392e60711">
 
 Конечно есть возможность убирать ссылки на файлы по одному, но что если их так много, что на удаление уйдет много времени?
 
+<details>
+  <summary>Спойлер Как я дошел до решения</summary>
 Я долго искал информацию по этому вопросу, нашел рекомендацию удалять файлы com.microsoft.Excel.securebookmarks.plist
 com.microsoft.Word.securebookmarks.plist
 com.microsoft.PowerPoint.securebookmarks.plist
@@ -79,8 +84,9 @@ com.microsoft.PowerPoint.securebookmarks.plist
 
 В итоге мною было составлен запрос на удаление записей касающихся последних открытых файлов:
 ```DELETE from "HKEY_CURRENT_USER_values" where node_id in (SELECT node_id FROM "HKEY_CURRENT_USER_values" WHERE name="path");```
+</details>
 
-Теперь о том, что собственно необходимо сделать для очистки:
+Для очистки сразу всего списка необходимо сделать следующее:
 
 1. Открываем Finder, далее в меню "Переход" выбираем пункт "Переход к папке" и вставляем этот путь ~/Library/Group Containers/UBF8T346G9.Office/MicrosoftRegistrationDB
 2. Видим один единственный файл MicrosoftRegistrationDB_xxxxxxxxxxxx.reg
