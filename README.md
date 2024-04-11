@@ -36,8 +36,14 @@ com.microsoft.PowerPoint.securebookmarks.plist
 </details>
 
 To clear the entire list at once, do the following:
-1. Open Finder, then in the “Go” menu select “Go to folder” and paste this path `~/Library/Group Containers/UBF8T346G9.Office/MicrosoftRegistrationDB`
-2. We see one single file `MicrosoftRegistrationDB_xxxxxxxxxxxx.reg`
+1. Open Finder, then in the “Go” menu select “Go to folder” and insert the path depending on the type of processor:
+
+| CPU  | Path | File name|
+|-----|-----------|-----------|
+| Intel    |`~/Library/Group Containers/UBF8T346G9.Office/MicrosoftRegistrationDB` | MicrosoftRegistrationDB_xxxxxxxxxxxx.reg|
+| Apple Silicon |`~/Library/Group Containers/UBF8T346G9.Office/`    |MicrosoftRegistrationDB.reg|
+
+2. Find the file with the .reg extension indicated in the table above.
 3. Open a terminal and type: `sqllite3` press <kbd>Space</kbd> and drag the file from Finder into the terminal window and press <kbd>Enter</kbd>, SQLite will start and the database will open. You can make sure that the file with the database is open by typing `.tables`, you should see this output:
  
 <img width="1204" alt="image" src="https://github.com/idle4you/ClearRecordsRecentFilesMSOffice/assets/71770803/e420625e-21e4-4d5d-9bd8-b09af46c6dc8">
@@ -60,11 +66,17 @@ To clear the entire list at once, do the following:
 
 7. Launch Word, Excel, PowerPoint and enjoy the result!
 
+<details>
+  <summary>Options for using database queries to delete...</summary>
+
 PS You can modify the request to delete only the last opened documents of a specific application, to do this, you need to add a condition to the request for the "Value" field:
 
 `Delete From HKEY_CURRENT_USER_values where node_id in (SELECT node_id FROM HKEY_CURRENT_USER_values WHERE value='Word');`
 
-I know that you can wrap this whole algorithm in the form of a tasty script, but unfortunately I don’t know how to get the path to `MicrosoftRegistrationDB_xxxxxxxxxxxx.reg` from the alias `~/Library/Group Containers/UBF8T346G9.Office/MicrosoftRegistrationDB.reg`.
+or delete everything except pinned ones:
+
+`Delete from "HKEY_CURRENT_USER_values" where node_id in (SELECT node_id FROM "HKEY_CURRENT_USER_values" WHERE name = 'IsPinned' and value = 0);`
+</details>
 
 ## Русский
 
@@ -103,8 +115,14 @@ com.microsoft.PowerPoint.securebookmarks.plist
 
 Для очистки сразу всего списка необходимо сделать следующее:
 
-1. Открываем Finder, далее в меню "Переход" выбираем пункт "Переход к папке" и вставляем этот путь ~/Library/Group Containers/UBF8T346G9.Office/MicrosoftRegistrationDB
-2. Видим один единственный файл MicrosoftRegistrationDB_xxxxxxxxxxxx.reg
+1. Открываем Finder, далее в меню "Переход" выбираем пункт "Переход к папке" и вставляем путь в зависимости от типа процессора:
+
+| Процессор  | Путь | Имя файла|
+|-----|-----------|-----------|
+| Intel    |`~/Library/Group Containers/UBF8T346G9.Office/MicrosoftRegistrationDB` | MicrosoftRegistrationDB_xxxxxxxxxxxx.reg|
+| Apple Silicon |`~/Library/Group Containers/UBF8T346G9.Office/`    |MicrosoftRegistrationDB.reg|
+     
+2. Находим файл с расширением .reg указанный в таблице выше. 
 3. Открываем терминал и набираем: `sqllite3` нажимаем <kbd>Пробел</kbd> и перетаскиваем файл из Finder в окно терминала и нажимаем <kbd>Enter</kbd>, запустится SQLite и откроется база. Убедится что файл с базой открыт можно набрав `.tables`, вы должны увидеть вот такой вывод:
 
 <img width="1204" alt="image" src="https://github.com/idle4you/ClearRecordsRecentFilesMSOffice/assets/71770803/e420625e-21e4-4d5d-9bd8-b09af46c6dc8">
@@ -127,10 +145,16 @@ com.microsoft.PowerPoint.securebookmarks.plist
 
 7. Запускаем Word, Excel, PowerPoint и наслаждаемся результатом!
 
+<details>
+  <summary>Варианты запросов для удаления...</summary>
+
 PS Можно модифицировать запрос чтобы удалить только последние открытые документы конкретного приложения, для этого необходимо добавить условие в запрос по полю "Value":
 
 `Delete From HKEY_CURRENT_USER_values where node_id in (SELECT node_id FROM HKEY_CURRENT_USER_values WHERE value='Word');`
 
-Знаю что можно весь этот алгоритм завернуть в виде вкусного скрипта, но к сожалению я не знаю как получить путь до MicrosoftRegistrationDB_xxxxxxxxxxxx.reg из псевдонима `~/Library/Group Containers/UBF8T346G9.Office/MicrosoftRegistrationDB.reg`.
+или удалить все, кроме закрепленных:
+
+`Delete from "HKEY_CURRENT_USER_values" where node_id in (SELECT node_id FROM "HKEY_CURRENT_USER_values" WHERE name = 'IsPinned' and value = 0);`
+</details>
 
 [^1]: Semicolon at the end is required! Точка с запятой в конце обязательна!
